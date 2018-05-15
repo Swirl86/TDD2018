@@ -4,7 +4,10 @@
 
 public class BowlingGame
 {
-     public void roll(int nrOfPinsKnockedDown) {
+    public void roll(int nrOfPinsKnockedDown) {
 		 
 	 }
+    public int score() {
+        return 0;
+    }
 }
