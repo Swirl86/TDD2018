@@ -17,17 +17,21 @@ import org.junit.Test;
 
 public class TestBowlingGame {
 
-    BowlingGame game;
-    
-    @Before
-        public void setUp() {
-        game = new BowlingGame();
-    }
-    
-    @Test
-        public void testGetGameScore() {
-        game.roll(0);
-        assertEquals(0, game.score());
-        }
+	BowlingGame game;
+	
+	@Before
+	public void setUp() {
+		game = new BowlingGame();
+	}
+	
+	@Test
+	public void testGetGameScore() {
+		for (int i = 0; i < 20; i++) {
+			game.roll(1);
+		}
+		System.out.println(game.score());
+		assertEquals(20, game.score());
+	}
 }
+
     
