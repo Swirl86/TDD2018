@@ -17,4 +17,10 @@ public class TestBowlingGame {
     public void createNewBowlingGame() {
         BowlingGame game = new BowlingGame();
     }
+
+    @Test
+	 public void rollABowlingBall() {
+	 BowlingGame game = new BowlingGame();
+		game.roll(0);
+	 }
 }
