@@ -3,21 +3,28 @@
  */
 
 public class BowlingGame {
-	private int[] rolls = new int[21];
-	private int roll = 0;
+	private int rolls[] = new int[21];
+	private int aRoll = 0;
 	private int score = 0;
 	
 	public void roll(int nrOfPinsKnockedDown) {
-		rolls[roll++] = nrOfPinsKnockedDown;
+		rolls[aRoll++] = nrOfPinsKnockedDown;
 	}
 	
 	public int score() {
-		for (int i = 0; i < rolls.length; i++) {
-			score += rolls[i];
+		int frameNr = 0;
+		for (int frame = 0; frame < 10; frame++) {
+			if (rolls[frameNr] + rolls[frameNr + 1] == 10) {
+				score += 10 + rolls[frameNr + 2];
+				frameNr += 2;
+			} else {
+				score += rolls[frameNr] + rolls[frameNr + 1];
+				frameNr += 2;
+			}
 		}
-	return score;
+		return score;
+	}
 }
 
-}
 
 
