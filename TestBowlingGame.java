@@ -16,20 +16,22 @@ import org.junit.Test;
  */
 
 public class TestBowlingGame {
-
 	BowlingGame game;
-	
+
 	@Before
 	public void setUp() {
 		game = new BowlingGame();
 	}
-	
+
+	private void doRolls(int nrOfRolls, int nrOfPins) {
+		for (int i = 0; i < nrOfRolls; i++) {
+			game.roll(nrOfPins);
+		}
+	}
+
 	@Test
 	public void testGetGameScore() {
-		for (int i = 0; i < 20; i++) {
-			game.roll(1);
-		}
-		System.out.println(game.score());
+		doRolls(20, 1);
 		assertEquals(20, game.score());
 	}
 }
