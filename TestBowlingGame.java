@@ -17,23 +17,33 @@ import org.junit.Test;
 
 public class TestBowlingGame {
 	BowlingGame game;
-
+	
 	@Before
 	public void setUp() {
 		game = new BowlingGame();
 	}
-
+	
 	private void doRolls(int nrOfRolls, int nrOfPins) {
 		for (int i = 0; i < nrOfRolls; i++) {
 			game.roll(nrOfPins);
 		}
 	}
-
+	
 	@Test
 	public void testGetGameScore() {
 		doRolls(20, 1);
 		assertEquals(20, game.score());
 	}
+	
+	@Test
+	public void testDoASpare() {
+		game.roll(1);
+		game.roll(9);
+		game.roll(3); 
+		doRolls(17, 0);
+		assertEquals(16, game.score());
+	}
 }
+
 
     
