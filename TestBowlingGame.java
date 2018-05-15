@@ -24,4 +24,12 @@ public class TestBowlingGame {
         game.roll(0);
 	}
 
+    @Test
+    public void rollABowlingBallGetAScore() {
+    	BowlingGame game = new BowlingGame();
+    	game.roll(0);
+    	assertEquals(0, game.score());
+    }
+
+
 }
