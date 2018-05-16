@@ -244,4 +244,42 @@ public class TestBowlingGame {
 
 	}
 
+	@Test
+	public void finalTest() {
+		game.roll(10);
+		game.roll(0);
+
+		game.roll(10);
+		game.roll(0);
+
+		game.roll(10);
+		game.roll(0);
+
+		game.roll(10);
+		game.roll(0);
+
+		game.roll(10);
+		game.roll(0);
+
+		game.roll(10);
+		game.roll(0);
+
+		game.roll(10);
+		game.roll(0);
+
+		game.roll(10);
+		game.roll(0);
+
+		game.roll(10);
+		game.roll(0);
+
+		game.roll(10);
+		game.roll(0);
+		game.roll(10);
+		game.roll(0);
+		game.roll(10);
+		game.roll(0);
+		assertEquals(300, game.score());
+	}
+
 }
