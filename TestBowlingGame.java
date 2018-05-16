@@ -43,7 +43,7 @@ public class TestBowlingGame {
 		assertEquals(16, game.score());
 	}
 
-	@Test
+
 	private void rollAStrike() {
 		game.roll(10);
 	}
@@ -52,34 +52,57 @@ public class TestBowlingGame {
 	public void StrikeAndSpare() {
 		game.roll(10);
 		game.roll(0);
+		
+		System.out.println(game.score());
+
 
 		game.roll(4);
 		game.roll(6);
+
+		System.out.println(game.score());
 
 		game.roll(7);
 		game.roll(2);
 
+		System.out.println(game.score());
+
 		game.roll(3);
 		game.roll(6);
 
+		System.out.println(game.score());
+
 		game.roll(4);
 		game.roll(4);
+
+		System.out.println(game.score());
 
 		game.roll(5);
 		game.roll(3);
 
+		System.out.println(game.score());
+
 		game.roll(3);
 		game.roll(3);
 
+		System.out.println(game.score());
+
 		game.roll(4);
 		game.roll(5);
+
+		System.out.println(game.score());
 
 		game.roll(8);
 		game.roll(1);
 
+		System.out.println(game.score());
+
 		game.roll(2);
 		game.roll(6);
+		
+		System.out.println(game.score());
+
 		assertEquals(103, game.score());
+		
 	}
 
 }
