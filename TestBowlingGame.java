@@ -3,7 +3,6 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-
 /*
  * Main file for testing Laboration 5
 */
@@ -17,39 +16,70 @@ import org.junit.Test;
 
 public class TestBowlingGame {
 	BowlingGame game;
-	
+
 	@Before
 	public void setUp() {
 		game = new BowlingGame();
 	}
-	
+
 	private void doRolls(int nrOfRolls, int nrOfPins) {
 		for (int i = 0; i < nrOfRolls; i++) {
 			game.roll(nrOfPins);
 		}
 	}
-	
+
 	@Test
 	public void testGetGameScore() {
 		doRolls(20, 1);
 		assertEquals(20, game.score());
 	}
-	
+
 	@Test
 	public void testDoASpare() {
 		game.roll(1);
 		game.roll(9);
-		game.roll(3); 
+		game.roll(3);
 		doRolls(17, 0);
 		assertEquals(16, game.score());
 	}
-	
+
 	@Test
 	private void rollAStrike() {
 		game.roll(10);
 	}
 
+	@Test
+	public void StrikeAndSpare() {
+		game.roll(10);
+		game.roll(0);
+
+		game.roll(4);
+		game.roll(6);
+
+		game.roll(7);
+		game.roll(2);
+
+		game.roll(3);
+		game.roll(6);
+
+		game.roll(4);
+		game.roll(4);
+
+		game.roll(5);
+		game.roll(3);
+
+		game.roll(3);
+		game.roll(3);
+
+		game.roll(4);
+		game.roll(5);
+
+		game.roll(8);
+		game.roll(1);
+
+		game.roll(2);
+		game.roll(6);
+		assertEquals(103, game.score());
+	}
+
 }
-
-
-    
