@@ -12,76 +12,79 @@ public class BowlingGame {
 		rolls[aRoll++] = nrOfPinsKnockedDown;
 	}
 
-	public int score() {
+	 public int score() {
 
-		boolean nextSpare = false;
-		int score = 0;
-		int frameNr = 0;
-		
-		for (int frame = 0; frame < MAXFRAMES; frame++) {
+	        boolean nextSpare = false;
+	        int score = 0;
+	        int frameNr = 0;
+	        for (int frame = 0; frame < MAXFRAMES; frame++) {
 
-			if (isAStrike(frameNr)) {
-				frameNr++;
-				score += 10 + strikeScore(frameNr);
-				if (isASpareAfterStrike(frameNr)) {
-					frameNr++;
-					nextSpare = true;
-				} else if (moreStrikes(frameNr)) {
-					frameNr++;
-					score += 10 + strikeScore(frameNr);
-					frameNr++;
-				}
+	            if (isAStrike(frameNr)) {
 
-			} else if (isASpare(frameNr) || nextSpare) {
-				score += 10 + spareScore(frameNr);
-				frameNr += 2;
-				nextSpare = false;
-			} else {
+	                score += 10 + strikeScore(frameNr);
+	                frameNr += 2;
+	                if (isASpareAfterStrike(frameNr)) {
+	                    frameNr++;
+	                    nextSpare = true;
+	                } else if (moreStrikes(frameNr)) {
+	                    score += 10 + strikeScore(frameNr);
+	                }
 
-				score += sumOfFrameScore(frameNr);
-				frameNr += 2;
-			}
-			System.out.print("  : Score " + score + "\n");
-		}
+	            } else if (isASpare(frameNr) || nextSpare) {
+	                score += 10 + spareScore(frameNr);
+	                frameNr += 2;
+	                nextSpare = false;
 
-		return score;
-	}
+	            } else {
 
-	private boolean isASpare(int frameNr) {
-		if (sumOfFrameScore(frameNr) == 10 && rolls[frameNr + 1] != 0) {
-			return true;
-		} else {
-			return false;
-		}
-	}
+	                score += sumOfFrameScore(frameNr);
+	                frameNr += 2;
+	            }
+	            System.out.print("  : Score " + score + "\n");
+	        }
 
-	private boolean isAStrike(int frameNr) {
-		if (sumOfFrameScore(frameNr) == 10 && rolls[frameNr + 1] == 0) {
-			return true;
-		} else {
-			return false;
-		}
-	}
+	        return score;
+	    }
 
-	private int spareScore(int frameNr) {
-		return rolls[frameNr + 2];
-	}
+	    private boolean isASpareAfterStrike(int frameNr) {
+	        return isASpare(frameNr + 1);
+	    }
 
-	private int strikeScore(int frameNr) {
-		return rolls[frameNr + 1] + rolls[frameNr + 2];
-	}
+	    private boolean moreStrikes(int frameNr) {
+	        return isAStrike(frameNr + 1);
+	    }
 
-	private int sumOfFrameScore(int frameNr) {
-		return rolls[frameNr] + rolls[frameNr + 1];
-	}
+	    private boolean isASpare(int frameNr) {
+	        if (sumOfFrameScore(frameNr) == 10 && rolls[frameNr + 1] != 0) {
+	            return true;
+	        } else {
+	            return false;
+	        }
+	    }
 
-	private boolean isASpareAfterStrike(int frameNr) {
-		return sumOfFrameScore(frameNr + 1) == 10;
-	}
+	    private boolean isAStrike(int frameNr) {
+	        if (sumOfFrameScore(frameNr) == 10 && rolls[frameNr + 1] == 0) {
+	            return true;
+	        } else {
+	            return false;
+	        }
+	    }
 
-	private boolean moreStrikes(int frameNr) {
-		return rolls[frameNr + 1] == 10;
-	}
+	    private int spareScore(int frameNr) {
+	        System.out.print(frameNr + " : 10 + " + rolls[frameNr + 2] + "\n");
+
+	        return rolls[frameNr + 2];
+	    }
+
+	    private int strikeScore(int frameNr) {
+	        System.out.print(frameNr + " : 10 + " + rolls[frameNr + 1] + " + " + rolls[frameNr + 2] + "\n");
+	        return rolls[frameNr + 2] + rolls[frameNr + 3];
+	    }
+
+	    private int sumOfFrameScore(int frameNr) {
+	        System.out.print(frameNr + " :" + rolls[frameNr] + " + " + rolls[frameNr + 1] + "\n");
+	        return rolls[frameNr] + rolls[frameNr + 1];
+	    }
 	
 	public void allStrikes()
 	{

@@ -86,7 +86,7 @@ public class TestBowlingGame {
 
 	}
 
-	@Test
+	//@Test
 	public void MultipleStrikes() {
 		game.roll(10);
 		game.roll(0);
