@@ -23,8 +23,11 @@ public class TestBowlingGame {
 	}
 
 	private void doRolls(int nrOfRolls, int nrOfPins) {
-		for (int i = 0; i < nrOfRolls; i++) {
-			game.roll(nrOfPins);
+		if (nrOfRolls == 12 && nrOfPins == 10)
+			game.allStrikes();
+		else {
+			for (int i = 0; i < nrOfRolls; i++)
+				game.roll(nrOfPins);
 		}
 	}
 
@@ -245,41 +248,10 @@ public class TestBowlingGame {
 	}
 
 	@Test
-	public void finalTest() {
-		game.roll(10);
-		game.roll(0);
+	public void BestScore() {
 
-		game.roll(10);
-		game.roll(0);
+		doRolls(12, 10);
 
-		game.roll(10);
-		game.roll(0);
-
-		game.roll(10);
-		game.roll(0);
-
-		game.roll(10);
-		game.roll(0);
-
-		game.roll(10);
-		game.roll(0);
-
-		game.roll(10);
-		game.roll(0);
-
-		game.roll(10);
-		game.roll(0);
-
-		game.roll(10);
-		game.roll(0);
-
-		game.roll(10);
-		game.roll(0);
-		game.roll(10);
-		game.roll(0);
-		game.roll(10);
-		game.roll(0);
-		assertEquals(300, game.score());
+		assertEquals(300, game.getScore());
 	}
-
 }
