@@ -4,7 +4,7 @@
 
 public class BowlingGame {
 	private static final int MAXFRAMES = 10;
-	private int rolls[] = new int[21];
+	private int rolls[] = new int[22];
 	private int aRoll = 0;
 	private int score = 0;
 
@@ -42,6 +42,7 @@ public class BowlingGame {
             }
             System.out.print("  : Score " + score + "\n");
         }
+        
         return score;
     }
 
