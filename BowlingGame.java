@@ -13,27 +13,37 @@ public class BowlingGame {
 	}
 
 	public int score() {
-		boolean nextSpare = false;
+
+        boolean nextSpare = false;
         int score = 0;
         int frameNr = 0;
-		for (int frame = 0; frame < MAXFRAMES; frame++) {
-			if (isAStrike(frameNr)) {
+        for (int frame = 0; frame < MAXFRAMES; frame++) {
+
+            if (isAStrike(frameNr)) {
                 frameNr++;
-                score += 10 + strikeScore(frameNr);                
+                score += 10 + strikeScore(frameNr);
                 if (isASpareAfterStrike(frameNr)) {
                     frameNr++;
                     nextSpare = true;
-                } 
-			} else if (isASpare(frameNr)) {
-				score += spareScore(frameNr);
-				frameNr += 2;
-			} else {
-				score += sumOfFrameScore(frameNr);
-				frameNr += 2;
-			}
-		}
-		return score;
-	}
+                } else if (moreStrikes(frameNr)) {
+                    frameNr++;
+                    score += 10 + strikeScore(frameNr);
+                    frameNr++;
+                }
+
+            } else if (isASpare(frameNr) || nextSpare) {
+                score += 10 + spareScore(frameNr);
+                frameNr += 2;
+                nextSpare = false;
+            } else {
+
+                score += sumOfFrameScore(frameNr);
+                frameNr += 2;
+            }
+            System.out.print("  : Score " + score + "\n");
+        }
+        return score;
+    }
 
 	private boolean isASpare(int frameNr) {
 		return sumOfFrameScore(frameNr) == 10;
@@ -44,7 +54,7 @@ public class BowlingGame {
 	}
 
 	private int spareScore(int frameNr) {
-		return 10 + rolls[frameNr + 2];
+		return rolls[frameNr + 2];
 	}
 
 	private int strikeScore(int frameNr) {
@@ -58,4 +68,8 @@ public class BowlingGame {
 	private boolean isASpareAfterStrike(int frameNr) {
 		return sumOfFrameScore(frameNr + 1) == 10;
 	}
+	
+	private boolean moreStrikes(int frameNr) {
+        return rolls[frameNr + 1] == 10;
+    }
 }
